@@ -1,3 +1,5 @@
+[![Tests](https://github.com/sentryco/BlurView/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/BlurView/actions/workflows/Tests.yml)
+
 # BlurView
 
 ## Project Description
