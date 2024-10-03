@@ -2,6 +2,8 @@
 
 # BlurView
 
+> BlurView for iOS and macOS
+
 ## Project Description
 BlurView is a versatile library for iOS and macOS that provides an easy way to add a blur effect to your applications. Whether you're looking to improve UI aesthetics or add some visual flair, BlurView is designed to be simple to integrate and use.
 
