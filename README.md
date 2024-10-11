@@ -14,7 +14,7 @@ BlurView is a versatile library for iOS and macOS that provides an easy way to a
 
 ## Installation
 ```Swift
-.package(url: "https://github.com/sentry.co/BlurView.git", branch: "main")
+.package(url: "https://github.com/sentry.co/BlurView", branch: "main")
 ```
 
 ## Usage
