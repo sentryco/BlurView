@@ -1,4 +1,5 @@
 [![Tests](https://github.com/sentryco/BlurView/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/BlurView/actions/workflows/Tests.yml)
+[![codebeat badge](https://codebeat.co/badges/1cad746c-61eb-435c-bed6-a3817a2aec37)](https://codebeat.co/projects/github-com-sentryco-blurview-main)
 
 # BlurView
 
