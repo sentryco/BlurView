@@ -10,13 +10,13 @@ let package = Package(
     products: [
         .library(
             name: "BlurView",
-            targets: ["BlurView"]),
+            targets: ["BlurView"])
     ],
     targets: [
         .target(
             name: "BlurView"),
         .testTarget(
             name: "BlurViewTests",
-            dependencies: ["BlurView"]),
+            dependencies: ["BlurView"])
     ]
 )
