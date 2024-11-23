@@ -13,15 +13,28 @@ BlurView is a versatile library for iOS and macOS that provides an easy way to a
 - Customizable blur intensity and style.
 - Lightweight with minimal performance impact.
 
+
+## Example:
+
+**MacOS:**
+
+```swift
+Rectangle()
+    .foregroundColor(Color.clear.opacity(0))
+    .frame(width: .infinity, height: 80, alignment: .top)
+    .visualEffect(material: .headerView, blendingMode: .withinWindow, emphasized: false)
+```
+
+**iOS:**
+
+```swift
+ Rectangle()
+      .foregroundColor(.clear)
+      .frame(width: .infinity, height: height)
+      .blurBG(Color.black.opacity(0.12))
+```
+
 ## Installation
 ```Swift
 .package(url: "https://github.com/sentry.co/BlurView", branch: "main")
-```
-
-## Usage
-To use BlurView in your project, import the library and apply it to your UI elements:
-
-```swift
-import BlurView
-BlurView.applyTo(view, withStyle: .light)
 ```
