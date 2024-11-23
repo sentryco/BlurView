@@ -24,13 +24,14 @@ extension View {
     * - Fixme: ⚠️️⚠️️ Try the legacy effectview as well, it might have nicer saturated black translucent etc
     * - Fixme: ⚠️️ Add full example for this in readme
     * - Fixme: ⚠️️ Add more customization in the method params
+    * - Fixme: ⚠️️ maybe let the caller set shouldIgnoreSafeArea? that removes the need for viewbuilder etc
     * ## Examples:
     * let color = Color(light: Color.white.opacity(0.1), dark: Color.black.opacity(0.6))
     * let rectangle = Rectangle().fill(.clear)
     * rectangle.translucentUnderlay(overlayColor: color)
     */
-   public func translucentUnderlay(overlayColor: Color) -> some View {
-      self
+   @ViewBuilder public func translucentUnderlay(overlayColor: Color, shouldIgnoreSafeArea: Bool = true) -> some View {
+      let view = self
       // .fill() // ⚠️️ was using: .fill(Color.black.opacity(0.6))
          .overlay(overlayColor) // mixin dark transperancy etc
          #if os(iOS)
@@ -46,6 +47,10 @@ extension View {
             maxWidth: .infinity, // Set the maximum width to fill the available space
             maxHeight: .infinity // Set the maximum height to fill the available space
          )
-         .ignoresSafeArea() // Ignore safe area insets for this view
+      if shouldIgnoreSafeArea {
+         view.ignoresSafeArea() // Ignore safe area insets for this view
+      } else {
+         view
+      }
    }
 }
