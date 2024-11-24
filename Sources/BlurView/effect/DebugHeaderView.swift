@@ -3,6 +3,9 @@ import SwiftUI
 /**
  * Note: Only for macOS
  * - Description: DebugHeaderView is a SwiftUI View component used for displaying a debug header.  It consists of a ZStack with a clear rectangle as the background, a pink rectangle box,  and an overlay rectangle with visual effects. This component is primarily used for debugging purposes.
+ * - Important: ⚠️️ If we use .hudWindow as material in visualEffect. We dont need underlay to match seem etc
+ * - Important: ⚠️️ Adding Material in background like regularMaterial etc. We dont need underlay to avoid seems.
+ * - Note: Best practice I think would be to use Material in a background() as both mac and ios has the same api. it requires the background color to be the native OS background color. But thats a limitation for the other solutions as well. unless we digg into legacy and figure out how to make custom background colors work
  */
 struct DebugHeaderView: View {
    /**
@@ -11,15 +14,23 @@ struct DebugHeaderView: View {
     */
    var body: some View {
       ZStack(alignment: .top) {
-//         Rectangle()
-//            .fill(Color.gray.opacity(1))
-//            .frame(width: .infinity, height: .infinity)
+//         Background()
          Underlay()
-         Graphic()
+//         Graphic()
          Overlay()
       }
    }
 }
+/**
+ * Background
+ */
+//struct Background: View {
+//   var body: some View {
+//      Rectangle()
+//         .fill(Color.black.opacity(1))
+//         .frame(width: .infinity, height: .infinity)
+//   }
+//}
 /**
  * Underlay
  * - Important: ⚠️️ This tints the background to the same tint that the translucent cover produces. So that there is near no visible seem between cover and background
@@ -27,9 +38,14 @@ struct DebugHeaderView: View {
 struct Underlay: View {
    var body: some View {
       Rectangle()
-         .fill(Color.clear.opacity(0))
+         .fill(Color.black.opacity(1))
          .frame(width: .infinity, height: .infinity)
-         .visualEffect(material: .headerView, blendingMode: .withinWindow, emphasized: false)
+//         .visualEffect(material: .hudWindow, blendingMode: .withinWindow, emphasized: false)
+//         .background(.ultraThickMaterial) // A mostly opaque material.
+//         .background(.thickMaterial) // A material that's more opaque than translucent.
+         .background(.regularMaterial) // A material that's somewhat translucent.
+//         .background(.thinMaterial) // A material that's more translucent than opaque.
+//         .background(.ultraThinMaterial) // A mostly translucent material.
    }
 }
 /**
@@ -50,15 +66,17 @@ struct Graphic: View {
 struct Overlay: View {
    var body: some View {
       Rectangle()
-         .foregroundColor(Color.clear.opacity(0))
-      // .foregroundColor(.clear)
-      // .fill(.clear.opacity(1))
+         .fill(.clear) // also works: .foregroundColor(.clear)
          .frame(width: .infinity, height: 80, alignment: .top)
-      // .presentationBackground(.ultraThinMaterial)
+//       .presentationBackground(.ultraThinMaterial)
       // .background(.gray.opacity(1))
-         .visualEffect(material: .headerView, blendingMode: .withinWindow, emphasized: false)
-      // .background(.ultraThinMaterial)
+//         .visualEffect(material: .hudWindow, blendingMode: .withinWindow, emphasized: false)
       // .background(VisualEffectView())
+//         .background(.ultraThickMaterial) // A mostly opaque material.
+//         .background(.thickMaterial) // A material that's more opaque than translucent.
+         .background(.regularMaterial) // A material that's somewhat translucent.
+//         .background(.thinMaterial) // A material that's more translucent than opaque.
+//         .background(.ultraThinMaterial)
    }
 }
 /**

@@ -25,6 +25,7 @@ extension View {
     * - Fixme: ⚠️️ Add full example for this in readme
     * - Fixme: ⚠️️ Add more customization in the method params
     * - Fixme: ⚠️️ maybe let the caller set shouldIgnoreSafeArea? that removes the need for viewbuilder etc
+    * - Fixme: ⚠️️ I think maybe we could just use background(.ultraThinMaterial) for both operating systems? If we cant. add a note about why?
     * ## Examples:
     * let color = Color(light: Color.white.opacity(0.1), dark: Color.black.opacity(0.6))
     * let rectangle = Rectangle().fill(.clear)
