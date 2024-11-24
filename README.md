@@ -42,3 +42,6 @@ Rectangle()
 ```Swift
 .package(url: "https://github.com/sentry.co/BlurView", branch: "main")
 ```
+
+## Todo: 
+- A current limitation is that macOS cant match background color with translucent tint color. Unlike iOS where this library has support for that. But I think we solved that in legacy, So look for that solution and recreate here. If there is no solution. Stick with OS provided background colors, which match the translucent. Or add an underlay that does not cover the overlay area. 
