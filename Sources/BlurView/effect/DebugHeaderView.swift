@@ -11,13 +11,13 @@ struct DebugHeaderView: View {
    /**
     * - Important: ⚠️️ It seems best to leave the background color to be decided by the operating system. It matches better with the translucent tint. Custom background colors creates more visible seems.
     * - Fixme: ⚠️️ Look into how this was done in legacy. Legacy supported any custom background color I think.
-    * - Fixme: ⚠️️ To avoid seem we can add an underlay that does not cover the overlay area?
+    * - Fixme: ⚠️️ To avoid seems we can add an underlay that does not cover the overlay area?
     */
    var body: some View {
       ZStack(alignment: .top) {
-//         Background()
+         // Background()
          Underlay()
-//         Graphic()
+         // Graphic()
          Overlay()
       }
    }
