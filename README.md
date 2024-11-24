@@ -16,6 +16,10 @@ BlurView is a versatile library for iOS and macOS that provides an easy way to a
 
 ## Example:
 
+- Adding an `.overlay()` can tint the translucent effect for both iOS and macOS. See View+Blur for example
+- There is a macOS example in `DebugHeaderView.swift`
+- There is a iOS example in `EffectView.swift`
+
 **MacOS:**
 
 ```swift
