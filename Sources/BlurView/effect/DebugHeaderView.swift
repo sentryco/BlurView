@@ -5,7 +5,17 @@ import SwiftUI
  * - Description: DebugHeaderView is a SwiftUI View component used for displaying a debug header.  It consists of a ZStack with a clear rectangle as the background, a pink rectangle box,  and an overlay rectangle with visual effects. This component is primarily used for debugging purposes.
  * - Important: ⚠️️ If we use .hudWindow as material in visualEffect. We dont need underlay to match seem etc
  * - Important: ⚠️️ Adding Material in background like regularMaterial etc. We dont need underlay to avoid seems.
+ * - Important: ⚠️️ There is less seem. If we add material to underlay. esp for light apperance mode
+ * - Important: ⚠️️ To remove all seems for macOS for all translusent types. The current workaround is to use inset a rectangle in the background. iOs doesnt need this, as it can use the tinted blur view from this kit
+ * - Important: ⚠️️ It doesnt seem possible to make translucent materil transperant. adding opacity disable translucency
  * - Note: Best practice I think would be to use Material in a background() as both mac and ios has the same api. it requires the background color to be the native OS background color. But thats a limitation for the other solutions as well. unless we digg into legacy and figure out how to make custom background colors work
+ * - Fixme: ⚠️️ add the workaround in the example bello to the debugview
+ * ## Examplea:
+ * Rectangle() // the current workaround for seemless translucent views for macOS
+ *    .inset(by: spacerHeight)
+ *    .fill(Material.ultraThinMaterial)
+ *    .alignmentGuide(.top) { _ in spacerHeight }
+ * ) // add translucent background here
  */
 struct DebugHeaderView: View {
    /**
@@ -20,6 +30,7 @@ struct DebugHeaderView: View {
          // Graphic()
          Overlay()
       }
+      
    }
 }
 /**
@@ -39,12 +50,12 @@ struct DebugHeaderView: View {
 struct Underlay: View {
    var body: some View {
       Rectangle()
-         .fill(Color.black.opacity(1))
+         .fill(Color.clear.opacity(1))
          .frame(width: .infinity, height: .infinity)
 //         .visualEffect(material: .hudWindow, blendingMode: .withinWindow, emphasized: false)
 //         .background(.ultraThickMaterial) // A mostly opaque material.
 //         .background(.thickMaterial) // A material that's more opaque than translucent.
-         .background(.regularMaterial) // A material that's somewhat translucent.
+//         .background(.regularMaterial) // A material that's somewhat translucent.
 //         .background(.thinMaterial) // A material that's more translucent than opaque.
 //         .background(.ultraThinMaterial) // A mostly translucent material.
    }
@@ -75,9 +86,9 @@ struct Overlay: View {
       // .background(VisualEffectView())
 //         .background(.ultraThickMaterial) // A mostly opaque material.
 //         .background(.thickMaterial) // A material that's more opaque than translucent.
-         .background(.regularMaterial) // A material that's somewhat translucent.
+//         .background(.regularMaterial) // A material that's somewhat translucent.
 //         .background(.thinMaterial) // A material that's more translucent than opaque.
-//         .background(.ultraThinMaterial)
+         .background(.ultraThinMaterial)
    }
 }
 /**
@@ -85,5 +96,6 @@ struct Overlay: View {
  */
 #Preview(traits: .fixedLayout(width: 400, height: 200)) {
    DebugHeaderView()
+//      .environment(\.colorScheme, .light) // dark / light
 }
 #endif
