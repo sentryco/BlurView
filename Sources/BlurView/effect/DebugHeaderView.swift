@@ -11,6 +11,7 @@ import SwiftUI
  * - Note: Best practice I think would be to use Material in a background() as both mac and ios has the same api. it requires the background color to be the native OS background color. But thats a limitation for the other solutions as well. unless we digg into legacy and figure out how to make custom background colors work
  * - Fixme: ⚠️️ add the workaround in the example bello to the debugview
  * ## Examplea:
+ * // ⚠️️ Seems we can also just do: padding(.top) here
  * Rectangle() // the current workaround for seemless translucent views for macOS
  *    .inset(by: spacerHeight)
  *    .fill(Material.ultraThinMaterial)

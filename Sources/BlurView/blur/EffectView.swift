@@ -101,7 +101,7 @@ struct EffectViewRepresentable: UIViewRepresentable {
  */
 #Preview {
    EffectViewRepresentable(tintingColor: .gray)
-      .previewLayout(.sizeThatFits)
+//      .previewLayout(.sizeThatFits)
       .padding()
 }
 #endif

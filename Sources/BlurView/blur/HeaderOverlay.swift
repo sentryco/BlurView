@@ -15,8 +15,8 @@ import SwiftUI
  *   - saturation: The color saturation for the header overlay.
  * - Returns: A view representing the header overlay with the specified height and saturation.
  */
-public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWhite.opacity(0.12)*/) -> some View {
-   Rectangle() // Create header background (adds the frosted background to header)
+@ViewBuilder public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWhite.opacity(0.12)*//*, shouldIgnoresSafeArea: Bool = false*/) -> some View {
+   let view = Rectangle() // Create header background (adds the frosted background to header)
       // .background(.green.opacity(0.2)) // debug
       .foregroundColor(.clear)
       // - Fixme: ⚠️️ make this .maxWidth? make sure tests keep running for all platforms etc
@@ -27,7 +27,11 @@ public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWh
       )
       // .background(.green) // ⚠️️ debug
       .blurBG(saturation) // 4 and 6 also looks cool we add Blur as a modifier?
-      .ignoresSafeArea() // ⚠️️ key to moving bg over safe-area
+//      if shouldIgnoresSafeArea {
+         view.ignoresSafeArea() // ⚠️️ key to moving bg over safe-area
+//      } else {
+//         view
+//      }
       // Can probably also do: .edgesIgnoringSafeArea(.all)
 }
 /**
@@ -39,7 +43,7 @@ public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWh
  */
 #Preview {
    headerOverlay(height: 100, saturation: Color.black.opacity(0.12))
-      .previewLayout(.sizeThatFits) // - Fixme: ⚠️️ Why do we need this?
+//      .previewLayout(.sizeThatFits) // - Fixme: ⚠️️ Why do we need this?
       .padding()
 }
 #endif

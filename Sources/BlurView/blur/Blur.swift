@@ -10,19 +10,19 @@ import UIKit
  * - Fixme: ⚠️️ Make all this as a view modifier? or?
  * - Fixme: ⚠️️ Move into multiple files?
  */
-struct BlurView: UIViewRepresentable {
+fileprivate struct BlurView: UIViewRepresentable {
    /**
     * The tinting color for the blur effect.
     * - Description: The color used to tint the blur effect, allowing customization of the blur appearance to match the app's design theme.
     */
-   var tintingColor: Color
+   fileprivate var tintingColor: Color
    /**
     * Creates and configures a UIVisualEffectView for the BlurView.
     * - Description: This function creates and configures a UIVisualEffectView instance for the BlurView. It uses the provided context to access necessary information and applies the tinting color to the UIVisualEffectView to achieve the desired blur effect.
     * - Parameter context: The context containing the coordinator and other necessary information for creating the UIVisualEffectView.
     * - Returns: The configured UIVisualEffectView instance.
     */
-   func makeUIView(context: Context) -> UIVisualEffectView {
+   fileprivate func makeUIView(context: Context) -> UIVisualEffectView {
       // Initializes an EffectView with the tintingColor converted to a UIColor
       EffectView(tintingColor: .init(tintingColor))
    }
@@ -33,7 +33,7 @@ struct BlurView: UIViewRepresentable {
     *   - uiView: The UIVisualEffectView to be updated.
     *   - context: The context containing the latest state.
     */
-   func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+   fileprivate func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
       uiView.effect = UIBlurEffect(style: .regular) // Sets the blur effect style to regular
    }
 }
@@ -42,19 +42,19 @@ struct BlurView: UIViewRepresentable {
  * - Description: The `BlurModifier` is a custom view modifier that applies a `BlurView` as a background to any SwiftUI view. The blur effect uses the specified `tintingColor` to create a frosted glass look, adding visual depth and focus to the content layered on top of it.
  * - Fixme: ⚠️️ Rename to something else later, like?
  */
-struct BlurModifier: ViewModifier {
+fileprivate struct BlurModifier: ViewModifier {
    /**
     * The tinting color for the blur effect.
     * - Description: The color used to tint the blur effect, allowing customization of the blur appearance to match the app's design theme.
     */
-   var tintingColor: Color
+   fileprivate var tintingColor: Color
    /**
     * Applies the BlurView to the content view.
     * - Description: This modifier wraps the content view with a BlurView, which overlays a UIVisualEffectView configured with a UIBlurEffect. The tintingColor is applied to the blur effect, creating a visually appealing backdrop that enhances the focus on the content.
     * - Parameter content: The content view to apply the BlurView to.
     * - Returns: The modified content view with the BlurView applied.
     */
-   func body(content: Content) -> some View {
+   fileprivate func body(content: Content) -> some View {
       content
          .background(BlurView(tintingColor: tintingColor)) // This is primary with 0.8 for light mode
    }
@@ -75,7 +75,7 @@ extension View {
     * - Parameter tintingColor: The color to tint the blur effect with.
     * - Returns: A view with the blur effect applied to its background.
     */
-   func blurBG(_ tintingColor: Color) -> some View {
+   public func blurBG(_ tintingColor: Color) -> some View {
       // - Fixme: ⚠️️ We can do .subTitle here with a view-modifer for Text
       let modifier = BlurModifier(tintingColor: tintingColor)
       return self.modifier(modifier)
@@ -92,7 +92,7 @@ extension View {
       Text("Hello, World!")
          .blurBG(.black.opacity(0.6))
    }
-   .previewLayout(.sizeThatFits)
+//   .previewLayout(.sizeThatFits)
    .padding()
 }
 #endif
