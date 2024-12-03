@@ -15,7 +15,7 @@ import SwiftUI
  *   - saturation: The color saturation for the header overlay.
  * - Returns: A view representing the header overlay with the specified height and saturation.
  */
-@ViewBuilder public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWhite.opacity(0.12)*//*, shouldIgnoresSafeArea: Bool = false*/) -> some View {
+@ViewBuilder public func headerOverlay(height: CGFloat, saturation: Color/* = Color.blackOrWhite.opacity(0.12)*/, shouldIgnoresSafeArea: Bool = false/*, */) -> some View {
    let view = Rectangle() // Create header background (adds the frosted background to header)
       // .background(.green.opacity(0.2)) // debug
       .foregroundColor(.clear)
@@ -27,11 +27,11 @@ import SwiftUI
       )
       // .background(.green) // ⚠️️ debug
       .blurBG(saturation) // 4 and 6 also looks cool we add Blur as a modifier?
-//      if shouldIgnoresSafeArea {
+      if shouldIgnoresSafeArea {
          view.ignoresSafeArea() // ⚠️️ key to moving bg over safe-area
-//      } else {
-//         view
-//      }
+      } else {
+         view
+      }
       // Can probably also do: .edgesIgnoringSafeArea(.all)
 }
 /**
