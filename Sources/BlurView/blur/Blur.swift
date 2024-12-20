@@ -80,6 +80,17 @@ extension View {
       let modifier = BlurModifier(tintingColor: tintingColor)
       return self.modifier(modifier)
    }
+   /**
+    * Adds support for safe-area (when adding blur, the color doesnt seem to spill into the safe-area like regular colors or materials, so we have to start it from the top of the safe-area)
+    */
+   @ViewBuilder public func blurBackground(_ tintingColor: Color, shouldIgnoresSafeArea: Bool = true) -> some View {
+      let view = self.blurBG(tintingColor)
+      if shouldIgnoresSafeArea {
+         view.ignoresSafeArea() // ⚠️️ key to moving bg over safe-area
+      } else {
+         view
+      } // Can probably also do: .edgesIgnoringSafeArea(.all)
+   }
 }
 /**
  * Preview
